@@ -1,0 +1,42 @@
+{% extends 'Cars/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+         
+
+        	 <div class='sign' style="padding-left:800px;" >
+                      
+                        <a class="btn btn-info" role="button" href="{% url 'register_user' %}">sign-up</a>
+                </div>
+                <p align="right">click here to sign up for more exciting post</p>
+
+                {%for post in posts%}
+        	<div class='container-fluid'>
+                
+		<div class="row">
+		      <p>Published on:{{post.published_date}}</p>
+		</div>
+                <div class="row">
+        		<h4><a href="{% url 'post_detail' pk=post.pk%}">{{post.title}}</a></h4>
+                </div>
+
+                <div class="row">
+                <div class="col-md-4">
+       		       <img src="{% static post.image %}" style="width:350px;height:350px;margin-left:20px;"/>
+                </div>
+                <div class="col-md-8" style="padding-left:150px;">
+        		<p >{{post.text}}</p>
+        		<a class="btn btn-default glyphicon glyphicon-hand-right" href="{% url 'vote' pk=post.pk%}"></a>
+                </div>
+                </div>
+
+        	</div>
+        	{% endfor %}
+
+                <div class='sign'>
+                        <p>click here to sign up for more exciting post</p>
+                        <a class="btn btn-info" role="button" href="{% url 'register_user' %}">sign-up</a>
+                </div>
+
+        
+{% endblock %}
